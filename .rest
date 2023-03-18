@@ -1,0 +1,8 @@
+### This is the request link
+GET http://localhost:3000/product HTTP/1.1
+###
+
+
+###
+GET http://localhost:3000/contact HTTP/1.1
+###
