@@ -49,8 +49,11 @@ app.get('/contact/:id', async(req, res) =>{
 // POST route for saving contact into database
 app.post('/contact', async(req, res) => {
     try {
-          const contact = await Contact.create(req.body)
+          const contact = await Contact.create(req.body);
+        //   res.status(200).json({message: `added new contact with ID ${id}`});
           res.status(200).json(contact)
+         
+
     } catch(error) {
         console.log(req.body);
         res.status(500).json({message:error.message})
@@ -69,7 +72,7 @@ app.put('/contact/:id', async(req, res) => {
             return res.status(404).json({message: `cannot find any product with ID ${id}`})
         }
         const updatedContact = await Contact.findById(id);
-        res.status(200).json(updatedContact);
+        res.status(200).json({message: `updated contact with name ${contact.firstName},${contact.lastName}`})
         
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -85,9 +88,11 @@ app.delete('/contact/:id', async(req, res) =>{
         const {id} = req.params;
         const contact = await Contact.findByIdAndDelete(id);
         if(!contact){
-            return res.status(404).json({message: `cannot find any product with ID ${id}`})
+            return res.status(404).json({message: `cannot find any contact with ID ${id}`});
         }
-        res.status(200).json(contact);
+        res.status(200).json({message: `deleted contact with name ${contact.firstName},${contact.lastName}`});
+        // res.status(200).json(contact);
+        console.log('successfully deleted contact');
         
     } catch (error) {
         res.status(500).json({message: error.message})
