@@ -18,7 +18,7 @@ app.use(express.json());
 // })
 
 
-// GET Contacts routes
+// GET All Contacts routes
 
 app.get('/contact',  async(req, res) =>{ 
     try {
@@ -31,6 +31,19 @@ app.get('/contact',  async(req, res) =>{
     }
 
 })
+
+
+// Find contact by single id
+app.get('/contact/:id', async(req, res) =>{
+    try {
+        const {id} = req.params;
+        const contact = await Contact.findById(id);
+        res.status(200).json(contact);
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
+
 
 
 // POST route for saving contact into database
