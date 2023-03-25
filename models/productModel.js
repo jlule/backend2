@@ -6,7 +6,16 @@ const productSchema = mongoose.Schema(
             type: String,
             required: [true, "Please enter a product name"]
         },
+        brandname: {
+            type: String,
+            required: [true, "Please enter a brand"]
+        },
         quantity: {
+            type: Number,
+            required: true,
+            default: 0
+        },
+        weight: {
             type: Number,
             required: true,
             default: 0
@@ -15,10 +24,15 @@ const productSchema = mongoose.Schema(
             type: Number,
             required: true,
         },
+        name: {
+            type: String,
+            required: [true, "Please enter a product name"]
+        },
         image: {
             type: String,
             required: false,
         }
+
     },
     {
         timestamps: true
